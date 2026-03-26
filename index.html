@@ -1,63 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BC WildWatch</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
 
-<title>BC WildWatch</title>
+    .navbar {
+      background: #f39c12;
+      padding: 15px;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.4em;
+      letter-spacing: 1px;
+    }
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    .hero {
+      background: linear-gradient(to right, #f39c12, #e74c3c);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-<style>
+    .hero h1 {
+      margin: 0;
+      font-size: 2.2em;
+    }
 
-html, body{
-    margin:0;
-    padding:0;
-    height:100%;
-    font-family: Arial;
-}
+    .hero p {
+      margin-top: 10px;
+      font-size: 1.1em;
+    }
 
-.container{
-    display:flex;
-    flex-direction:column;
-    height:100vh;
-}
+    .content {
+      display: flex;
+      justify-content: center;
+      padding: 30px;
+    }
 
-.header{
-    text-align:center;
-    background:#2c3e50;
-    color:white;
-    padding:15px;
-}
+    .card {
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      width: 90%;
+      max-width: 900px;
+    }
 
-.header h1{
-    margin:5px;
-}
+    .card iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
 
-.header p{
-    margin:0;
-}
-
-iframe{
-    flex:1;
-    width:100%;
-    border:none;
-}
-
-</style>
-
+    .footer {
+      background: #2c3e50;
+      color: #ddd;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+  <div class="navbar">Belgium Campus iTversity</div>
 
-<div class="header">
-<h1>BC WildWatch™</h1>
-<p>Report dangerous animals on campus</p>
-</div>
+  <div class="hero">
+    <h1>BC WildWatch</h1>
+    <p>Protecting our campus community from dangerous animals</p>
+  </div>
 
-<iframe src="https://apps.powerapps.com/play/e/93aeb50b-f731-e2b9-bc9b-fcba74297f52/a/72a2b1a8-f9a6-4540-9f7e-14716ca192c3?tenantId=ea1a909b-6600-4a25-82a5-0c6ed7d0513b&hint=bfd67233-8d90-4ee9-bc81-76fb7b4cd82a&sourcetime=1774522195474"></iframe>
+  <div class="content">
+    <div class="card">
+      <iframe src="https://apps.powerapps.com/play/e/93aeb50b-f731-e2b9-bc9b-fcba74297f52/a/72a2b1a8-f9a6-4540-9f7e-14716ca192c3?tenantId=ea1a909b-6600-4a25-82a5-0c6ed7d0513b&hint=bfd67233-8d90-4ee9-bc81-76fb7b4cd82a&sourcetime=1774522195474"></iframe>
+    </div>
+  </div>
 
-</div>
+  <div class="footer">
+    © 2026 Belgium Campus iTversity | BC WildWatch
+  </div>
 
 </body>
+</html>
 </html>
