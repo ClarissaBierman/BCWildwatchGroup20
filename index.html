@@ -8,87 +8,147 @@
     body {
       margin: 0;
       font-family: "Segoe UI", Arial, sans-serif;
-      background: #ffffff; /* clean white background */
+      background: #f9f9f9;
       color: #222;
-    }
-
-    .navbar {
-      background: #000000; /* black bar */
-      padding: 15px;
-      text-align: center;
-      color: #f1c40f; /* yellow text */
-      font-weight: bold;
-      font-size: 1.4em;
-      letter-spacing: 1px;
-    }
-
-    .hero {
-      background: #b30000; /* deep red */
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-      border-bottom: 5px solid #f1c40f; /* yellow accent line */
-    }
-
-    .hero h1 {
-      margin: 0;
-      font-size: 2.4em;
-    }
-
-    .hero p {
-      margin-top: 10px;
-      font-size: 1.1em;
-    }
-
-    .content {
       display: flex;
-      justify-content: center;
-      padding: 30px;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: #b30000; /* red */
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 5px solid #f1c40f; /* yellow accent */
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    .header p {
+      margin: 5px 0 0;
+    }
+
+    /* Layout wrapper */
+    .layout {
+      flex: 1;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: #000000; /* black */
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      color: #f1c40f; /* yellow */
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 1.2em;
+    }
+
+    .nav-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .nav-links li {
+      margin: 12px 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      display: block;
+      padding: 8px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .nav-links a:hover {
+      background: #b30000; /* red hover */
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .card {
       background: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 100%;
+      flex: 1;
+      border-top: 6px solid #b30000;
       overflow: hidden;
-      width: 90%;
-      max-width: 950px;
-      border-top: 6px solid #b30000; /* red accent */
     }
 
     .card iframe {
       width: 100%;
-      height: 600px;
+      height: 100%;
       border: none;
     }
 
     .footer {
-      background: #000000; /* black footer */
-      color: #f1c40f; /* yellow text */
+      background: #000000;
+      color: #f1c40f;
       text-align: center;
-      padding: 15px;
+      padding: 10px;
       font-size: 0.9em;
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
 
-  <div class="navbar">Belgium Campus iTversity</div>
-
-  <div class="hero">
-    <h1>BC WildWatch</h1>
-    <p>Report dangerous animals on campus</p>
+  <!-- Header -->
+  <div class="header">
+    <h1>Belgium Campus iTversity</h1>
+    <p>BC WildWatch – Report dangerous animals on campus</p>
   </div>
 
-  <div class="content">
-    <div class="card">
-      <iframe src="https://apps.powerapps.com/play/e/93aeb50b-f731-e2b9-bc9b-fcba74297f52/a/72a2b1a8-f9a6-4540-9f7e-14716ca192c3?tenantId=ea1a909b-6600-4a25-82a5-0c6ed7d0513b&hint=bfd67233-8d90-4ee9-bc81-76fb7b4cd82a&sourcetime=1774522195474"></iframe>
+  <!-- Layout with sidebar + main -->
+  <div class="layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Menu</h2>
+      <ul class="nav-links">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Report Incident</a></li>
+        <li><a href="#">My Reports</a></li>
+        <li><a href="#">Help</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
     </div>
-  </div>
 
-  <div class="footer">
-    © 2026 Belgium Campus iTversity | BC WildWatch
+    <!-- Main content -->
+    <div class="main">
+      <div class="card">
+        <iframe src="https://apps.powerapps.com/play/e/93aeb50b-f731-e2b9-bc9b-fcba74297f52/a/72a2b1a8-f9a6-4540-9f7e-14716ca192c3?tenantId=ea1a909b-6600-4a25-82a5-0c6ed7d0513b&hint=bfd67233-8d90-4ee9-bc81-76fb7b4cd82a&sourcetime=1774522195474"></iframe>
+      </div>
+      <div class="footer">
+        © 2026 Belgium Campus iTversity | BC WildWatch
+      </div>
+    </div>
   </div>
 
 </body>
 </html>
+
+    .sidebar h2 {
+      color: #f1c40f; /* yellow */
