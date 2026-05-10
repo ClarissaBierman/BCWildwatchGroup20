@@ -8,6 +8,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
   <style>
 
+    /* ════════════════════════════════
+       THEME VARIABLES
+    ════════════════════════════════ */
     :root {
       --red:      #c0000c;
       --red-dark: #8a0008;
@@ -20,12 +23,24 @@
       --border:      #e0ddd7;
       --text:        #1a1a1a;
       --text-muted:  #777;
+      --text-faint:  #bbb;
       --stripe-gap:  #e0ddd7;
       --footer-bg:   #1a1a1a;
       --footer-text: #555;
       --pagebar-bg:  #ffffff;
       --pagebar-bdr: #e0ddd7;
       --tog-bdr:     #e0ddd7;
+      --login-bg:    #f4f2ee;
+      --login-card:  #ffffff;
+      --login-bdr:   #e0ddd7;
+      --login-shadow:rgba(0,0,0,0.08);
+      --user-name:   #1a1a1a;
+      --out-bdr:     #ddd;
+      --out-text:    #666;
+      /* Logo colours in light mode */
+      --logo-icon:   #1a1a1a;
+      --logo-text:   #1a1a1a;
+      --logo-sub:    #888888;
     }
 
     [data-theme="dark"] {
@@ -34,14 +49,29 @@
       --border:      #2a2a2a;
       --text:        #f0ede6;
       --text-muted:  #888;
+      --text-faint:  #555;
       --stripe-gap:  #111;
       --footer-bg:   #111111;
       --footer-text: #444;
       --pagebar-bg:  #1a1a1a;
       --pagebar-bdr: #2a2a2a;
       --tog-bdr:     #333;
+      --login-bg:    #0d0d0d;
+      --login-card:  #1a1a1a;
+      --login-bdr:   #2a2a2a;
+      --login-shadow:rgba(0,0,0,0.5);
+      --user-name:   #f0ede6;
+      --out-bdr:     #333;
+      --out-text:    #888;
+      /* Logo colours in dark mode */
+      --logo-icon:   #e8e8e8;
+      --logo-text:   #e8e8e8;
+      --logo-sub:    #999999;
     }
 
+    /* ════════════════════════════════
+       RESET
+    ════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
 
@@ -55,7 +85,9 @@
       transition: background 0.25s, color 0.25s;
     }
 
-    /* ── STRIPE ── */
+     /* ════════════════════════════════
+       STRIPE BAR
+    ════════════════════════════════ */
     .stripe {
       height: 5px;
       flex-shrink: 0;
@@ -66,12 +98,14 @@
       );
     }
 
-    /* ── HEADER ── */
+    /* ════════════════════════════════
+       HEADER
+    ════════════════════════════════ */
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
       padding: 0 22px;
-      height: 58px;
+      height: 62px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -79,47 +113,20 @@
       transition: background 0.25s, border-color 0.25s;
     }
 
-    .logo {
+    /* Header logo SVG — constrained to header height */
+    .logo-svg {
+      height: 38px;
+      width: auto;
+    }
+
+    /* Header right controls */
+    .header-right {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 10px;
     }
 
-    .logo-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--red);
-      border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-icon svg {
-      width: 21px;
-      height: 21px;
-      fill: var(--yellow);
-    }
-
-    .logo-name {
-      font-family: 'Oswald', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--red);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      display: block;
-      line-height: 1.1;
-    }
-
-    .logo-sub {
-      font-size: 10px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
-
-    /* ── THEME TOGGLE ── */
+    /* Theme toggle */
     .toggle-btn {
       width: 34px;
       height: 34px;
@@ -132,22 +139,190 @@
       justify-content: center;
       color: var(--text-muted);
       transition: background 0.2s, color 0.2s;
+      flex-shrink: 0;
     }
 
     .toggle-btn:hover { background: var(--bg); color: var(--text); }
     .toggle-btn svg { width: 15px; height: 15px; pointer-events: none; }
 
+    /* Light mode: show sun icon (to hint "switch to dark") */
     .icon-sun  { display: block; }
     .icon-moon { display: none; }
     [data-theme="dark"] .icon-sun  { display: none; }
     [data-theme="dark"] .icon-moon { display: block; }
 
-    /* ── PAGE BAR ── */
+    /* Sign in button */
+    .btn-signin {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .btn-signin:hover { background: var(--red-dark); }
+
+    /* User chip (shown after login) */
+    .user-chip { display: flex; align-items: center; gap: 8px; }
+
+    .user-avatar {
+      width: 30px;
+      height: 30px;
+      background: var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .user-name {
+      font-size: 13px;
+      color: var(--user-name);
+      max-width: 140px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .btn-signout {
+      font-size: 12px;
+      background: transparent;
+      color: var(--out-text);
+      border: 1px solid var(--out-bdr);
+      padding: 5px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+
+    .btn-signout:hover { color: var(--text); border-color: var(--text-muted); }
+
+    /* ════════════════════════════════
+       MAIN
+    ════════════════════════════════ */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ════════════════════════════════
+       LOGIN SCREEN
+    ════════════════════════════════ */
+    #login-screen {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--login-bg);
+      padding: 24px;
+      transition: background 0.25s;
+    }
+
+    .login-card {
+      background: var(--login-card);
+      border: 1px solid var(--login-bdr);
+      border-top: 4px solid var(--red);
+      border-radius: 10px;
+      padding: 44px 36px 36px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 28px var(--login-shadow);
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    /* Large logo in login card */
+    .login-logo {
+      height: 64px;
+      width: auto;
+      margin-bottom: 24px;
+    }
+
+    .login-card h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .login-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .login-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 0 24px;
+    }
+
+    /* Microsoft sign-in button */
+    .ms-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 12px 20px;
+      background: #ffffff;
+      color: #1a1a1a;
+      border: 1px solid #d0d0d0;
+      border-radius: 5px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      transition: background 0.15s;
+    }
+
+    .ms-btn:hover { background: #f0f0f0; }
+    .ms-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .security-note {
+      margin-top: 18px;
+      font-size: 11px;
+      color: var(--text-faint);
+      line-height: 1.6;
+    }
+
+    .security-note strong { color: var(--red); font-weight: 600; }
+
+    /* ════════════════════════════════
+       APP SCREEN (after login)
+    ════════════════════════════════ */
+    #app-screen {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
     .pagebar {
       background: var(--pagebar-bg);
       border-bottom: 1px solid var(--pagebar-bdr);
       padding: 0 18px;
-      height: 44px;
+      height: 42px;
       display: flex;
       align-items: center;
       flex-shrink: 0;
@@ -163,11 +338,7 @@
       color: var(--text);
     }
 
-    /* ── IFRAME ── */
-    .iframe-wrap {
-      flex: 1;
-      overflow: hidden;
-    }
+    .iframe-wrap { flex: 1; overflow: hidden; }
 
     .iframe-wrap iframe {
       width: 100%;
@@ -176,7 +347,9 @@
       display: block;
     }
 
-    /* ── FOOTER ── */
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
     footer {
       background: var(--footer-bg);
       padding: 8px 20px;
@@ -198,67 +371,188 @@
 
   <div class="stripe"></div>
 
-  <!-- HEADER -->
+  <!-- ══ HEADER ══ -->
   <header>
-    <div class="logo">
-      <div class="logo-icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="6"    cy="5"   rx="2"   ry="2.8"/>
-          <ellipse cx="11.5" cy="3.5" rx="2"   ry="2.8"/>
-          <ellipse cx="17"   cy="5"   rx="2"   ry="2.8"/>
-          <ellipse cx="4.5"  cy="10"  rx="1.6" ry="2.2"/>
-          <path d="M7.5 10.5c0-3 9-3 9 0 0 5-2 8-4.5 8s-4.5-3-4.5-8z"/>
+
+    <!--
+      ══════════════════════════════════════════════════
+      INLINE LOGO
+      ══════════════════════════════════════════════════
+    -->
+    <svg class="logo-svg" viewBox="0 0 800 168" xmlns="http://www.w3.org/2000/svg" aria-label="Belgium Campus iTversity WildWatch">
+
+      <!-- Text -->
+      <text x="0" y="82"
+        font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
+        font-weight="900" font-size="58"
+        class="bc-text-main">BELGIUM CAMPUS</text>
+
+      <text x="20" y="134"
+        font-family="Arial,Helvetica,sans-serif"
+        font-weight="400" font-size="46"
+        class="bc-text-sub">iTversity</text>
+
+      <!-- Icon group -->
+      <g transform="translate(588, 3)">
+
+        <!-- Upper ] bracket -->
+        <path class="bc-icon" d="
+          M 75,0 L 196,0 Q 212,0 212,14
+          L 212,96 Q 212,110 196,110
+          L 75,110 L 75,86 L 186,86
+          L 186,24 L 75,24 Z"/>
+
+        <!-- Lower [ bracket -->
+        <path class="bc-icon" d="
+          M 14,52 L 137,52 L 137,76
+          L 26,76 L 26,138 L 137,138
+          L 137,162 L 14,162
+          Q 0,162 0,148
+          L 0,66 Q 0,52 14,52 Z"/>
+
+        <!-- Bridge — closes the gap between brackets -->
+        <rect class="bc-icon" x="75" y="76" width="62" height="10"/>
+
+        <!-- Belgian flag stripes on ] right stem top -->
+        <rect x="186" y="0" width="6.5" height="56" fill="#1a1a1a"/>
+        <rect x="192" y="0" width="6"   height="56" fill="#f5c518"/>
+        <rect x="198" y="0" width="6"   height="56" fill="#c0000c"/>
+        <rect x="204" y="0" width="8"   height="56" fill="#1a1a1a"/>
+
+        <!-- Paw print inside the ] opening — BC red -->
+        <g fill="#c0000c">
+          <ellipse cx="97"  cy="47" rx="9" ry="11"/>
+          <ellipse cx="116" cy="37" rx="9" ry="11"/>
+          <ellipse cx="143" cy="37" rx="9" ry="11"/>
+          <ellipse cx="162" cy="47" rx="9" ry="11"/>
+          <ellipse cx="130" cy="70" rx="21" ry="15"/>
+        </g>
+
+      </g>
+    </svg>
+    <!-- ══ END LOGO ══ -->
+
+    <div class="header-right">
+
+      <!-- Light / Dark toggle -->
+      <button class="toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1"  x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22"   x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1"  y1="12" x2="3"  y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78"  x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
         </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- Auth area -->
+      <div id="header-auth">
+        <button class="btn-signin" onclick="signIn()">Sign in with Microsoft</button>
       </div>
-      <div>
-        <span class="logo-name">BC WildWatch™</span>
-        <span class="logo-sub">Belgium Campus iTversity</span>
+
+    </div>
+  </header>
+
+  <!-- ══ MAIN ══ -->
+  <main>
+
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen">
+      <div class="login-card">
+
+        <!-- Larger version of the same inline SVG logo for the login card -->
+        <img src="Belgium_Logo.webp" alt="Belgium Campus Logo" class="logo-svg">
+          <text x="0" y="82"
+            font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
+            font-weight="900" font-size="58"
+            class="bc-text-main">BELGIUM CAMPUS</text>
+          <text x="20" y="134"
+            font-family="Arial,Helvetica,sans-serif"
+            font-weight="400" font-size="46"
+            class="bc-text-sub">iTversity</text>
+          <g transform="translate(588, 3)">
+            <path class="bc-icon" d="M 75,0 L 196,0 Q 212,0 212,14 L 212,96 Q 212,110 196,110 L 75,110 L 75,86 L 186,86 L 186,24 L 75,24 Z"/>
+            <path class="bc-icon" d="M 14,52 L 137,52 L 137,76 L 26,76 L 26,138 L 137,138 L 137,162 L 14,162 Q 0,162 0,148 L 0,66 Q 0,52 14,52 Z"/>
+            <rect class="bc-icon" x="75" y="76" width="62" height="10"/>
+            <rect x="186" y="0" width="6.5" height="56" fill="#1a1a1a"/>
+            <rect x="192" y="0" width="6"   height="56" fill="#f5c518"/>
+            <rect x="198" y="0" width="6"   height="56" fill="#c0000c"/>
+            <rect x="204" y="0" width="8"   height="56" fill="#1a1a1a"/>
+            <g fill="#c0000c">
+              <ellipse cx="97"  cy="47" rx="9" ry="11"/>
+              <ellipse cx="116" cy="37" rx="9" ry="11"/>
+              <ellipse cx="143" cy="37" rx="9" ry="11"/>
+              <ellipse cx="162" cy="47" rx="9" ry="11"/>
+              <ellipse cx="130" cy="70" rx="21" ry="15"/>
+            </g>
+          </g>
+        </svg>
+
+        <h1>BC WildWatch™</h1>
+        <p class="login-tagline">Campus Animal Safety Reporting Portal</p>
+        <hr class="login-divider">
+
+        <button class="ms-btn" onclick="signIn()">
+          <!-- Microsoft four-square logo -->
+          <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1"  y="1"  width="9" height="9" fill="#f25022"/>
+            <rect x="11" y="1"  width="9" height="9" fill="#7fba00"/>
+            <rect x="1"  y="11" width="9" height="9" fill="#00a4ef"/>
+            <rect x="11" y="11" width="9" height="9" fill="#ffb900"/>
+          </svg>
+          Sign in with Microsoft 365
+        </button>
+
+        <p class="security-note">
+          Secured with <strong>Azure AD / Entra ID</strong>.<br>
+          Belgium Campus iTversity M365 A3 accounts only.
+        </p>
+
       </div>
     </div>
 
-    <!-- Light / Dark toggle -->
-    <button class="toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme">
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"/>
-        <line x1="12" y1="1"  x2="12" y2="3"/>
-        <line x1="12" y1="21" x2="12" y2="23"/>
-        <line x1="4.22" y1="4.22"   x2="5.64" y2="5.64"/>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-        <line x1="1"  y1="12" x2="3"  y2="12"/>
-        <line x1="21" y1="12" x2="23" y2="12"/>
-        <line x1="4.22" y1="19.78"  x2="5.64" y2="18.36"/>
-        <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
-      </svg>
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-    </button>
-  </header>
+    <!-- APP SCREEN (shown after login) -->
+    <div id="app-screen">
+      <div class="pagebar">
+        <span class="pagebar-title">BC WildWatch™ — Campus Safety Portal</span>
+      </div>
+      <div class="iframe-wrap">
+        <iframe
+          src="https://apps.powerapps.com/play/e/93aeb50b-f731-e2b9-bc9b-fcba74297f52/a/72a2b1a8-f9a6-4540-9f7e-14716ca192c3?tenantId=ea1a909b-6600-4a25-82a5-0c6ed7d0513b&hint=bfd67233-8d90-4ee9-bc81-76fb7b4cd82a&sourcetime=1774522195474"
+          allow="camera; microphone; geolocation"
+          title="BC WildWatch Power App">
+        </iframe>
+      </div>
+    </div>
 
-  <!-- PAGE BAR -->
-  <div class="pagebar">
-    <span class="pagebar-title">BC WildWatch™ — Campus Safety Portal</span>
-  </div>
+  </main>
 
-  <!-- POWER APPS IFRAME -->
-  <div class="iframe-wrap">
-    <iframe
-      src="https://apps.powerapps.com/play/e/93aeb50b-f731-e2b9-bc9b-fcba74297f52/a/72a2b1a8-f9a6-4540-9f7e-14716ca192c3?tenantId=ea1a909b-6600-4a25-82a5-0c6ed7d0513b&hint=bfd67233-8d90-4ee9-bc81-76fb7b4cd82a&sourcetime=1774522195474"
-      allow="camera; microphone; geolocation"
-      title="BC WildWatch Power App">
-    </iframe>
-  </div>
-
-  <!-- FOOTER -->
+  <!-- ══ FOOTER ══ -->
   <footer>
     <span>© 2026 <span class="f-red">Belgium Campus iTversity</span> · BC WildWatch™ · Group 20</span>
     <span>INL37(8)1 · <span class="f-gold">Microsoft Entra ID</span></span>
   </footer>
 
+  <!-- ══ MSAL — Microsoft Entra ID Auth ══ -->
+  <script src="https://alcdn.msauth.net/browser/2.38.3/js/msal-browser.min.js"></script>
   <script>
+
+    /* ── THEME ──────────────────────────────────────────
+       Default = light. Only switches to dark if the user
+       has previously saved that preference.
+    ─────────────────────────────────────────────────── */
     (function () {
       const saved = localStorage.getItem('ww-theme');
-      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
     })();
 
     function toggleTheme() {
@@ -267,6 +561,81 @@
       html.setAttribute('data-theme', next);
       localStorage.setItem('ww-theme', next);
     }
+
+    /* ── MSAL / ENTRA ID ────────────────────────────────*/
+    const msalConfig = {
+      auth: {
+        clientId:    "YOUR_APP_CLIENT_ID_HERE",
+        authority:   "https://login.microsoftonline.com/ea1a909b-6600-4a25-82a5-0c6ed7d0513b",
+        redirectUri: window.location.origin + window.location.pathname
+      },
+      cache: {
+        cacheLocation:          "sessionStorage",
+        storeAuthStateInCookie: false
+      }
+    };
+
+    const loginRequest = { scopes: ["openid", "profile", "email", "User.Read"] };
+    let msalInstance = null;
+
+    try {
+      msalInstance = new msal.PublicClientApplication(msalConfig);
+      msalInstance.handleRedirectPromise()
+        .then(response => {
+          if (response) {
+            showApp(response.account);
+          } else {
+            const accounts = msalInstance.getAllAccounts();
+            if (accounts.length > 0) showApp(accounts[0]);
+          }
+        })
+        .catch(err => console.warn("MSAL redirect:", err));
+    } catch (e) {
+      console.warn("MSAL not available — demo mode active");
+    }
+
+    function signIn() {
+      if (!msalInstance) {
+        showApp({ name: "Demo User", username: "demo@belgiumcampus.ac.za" });
+        return;
+      }
+      msalInstance.loginPopup(loginRequest)
+        .then(r  => showApp(r.account))
+        .catch(err => console.error("Login failed:", err));
+    }
+
+    function signOut() {
+      if (msalInstance) {
+        msalInstance.logoutPopup().then(() => hideApp());
+      } else {
+        hideApp();
+      }
+    }
+
+    function showApp(account) {
+      document.getElementById("login-screen").style.display = "none";
+      document.getElementById("app-screen").style.display   = "flex";
+
+      const initials    = account.name
+        ? account.name.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase()
+        : "BC";
+      const displayName = account.name || account.username;
+
+      document.getElementById("header-auth").innerHTML = `
+        <div class="user-chip">
+          <div class="user-avatar">${initials}</div>
+          <span class="user-name">${displayName}</span>
+          <button class="btn-signout" onclick="signOut()">Sign out</button>
+        </div>`;
+    }
+
+    function hideApp() {
+      document.getElementById("app-screen").style.display   = "none";
+      document.getElementById("login-screen").style.display = "flex";
+      document.getElementById("header-auth").innerHTML =
+        `<button class="btn-signin" onclick="signIn()">Sign in with Microsoft</button>`;
+    }
+
   </script>
 
 </body>
