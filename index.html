@@ -113,7 +113,6 @@
       transition: background 0.25s, border-color 0.25s;
     }
 
-    /* Header logo SVG — constrained to header height */
     .logo-svg {
       height: 38px;
       width: auto;
@@ -379,57 +378,7 @@
       INLINE LOGO
       ══════════════════════════════════════════════════
     -->
-    <svg class="logo-svg" viewBox="0 0 800 168" xmlns="http://www.w3.org/2000/svg" aria-label="Belgium Campus iTversity WildWatch">
-
-      <!-- Text -->
-      <text x="0" y="82"
-        font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
-        font-weight="900" font-size="58"
-        class="bc-text-main">BELGIUM CAMPUS</text>
-
-      <text x="20" y="134"
-        font-family="Arial,Helvetica,sans-serif"
-        font-weight="400" font-size="46"
-        class="bc-text-sub">iTversity</text>
-
-      <!-- Icon group -->
-      <g transform="translate(588, 3)">
-
-        <!-- Upper ] bracket -->
-        <path class="bc-icon" d="
-          M 75,0 L 196,0 Q 212,0 212,14
-          L 212,96 Q 212,110 196,110
-          L 75,110 L 75,86 L 186,86
-          L 186,24 L 75,24 Z"/>
-
-        <!-- Lower [ bracket -->
-        <path class="bc-icon" d="
-          M 14,52 L 137,52 L 137,76
-          L 26,76 L 26,138 L 137,138
-          L 137,162 L 14,162
-          Q 0,162 0,148
-          L 0,66 Q 0,52 14,52 Z"/>
-
-        <!-- Bridge — closes the gap between brackets -->
-        <rect class="bc-icon" x="75" y="76" width="62" height="10"/>
-
-        <!-- Belgian flag stripes on ] right stem top -->
-        <rect x="186" y="0" width="6.5" height="56" fill="#1a1a1a"/>
-        <rect x="192" y="0" width="6"   height="56" fill="#f5c518"/>
-        <rect x="198" y="0" width="6"   height="56" fill="#c0000c"/>
-        <rect x="204" y="0" width="8"   height="56" fill="#1a1a1a"/>
-
-        <!-- Paw print inside the ] opening — BC red -->
-        <g fill="#c0000c">
-          <ellipse cx="97"  cy="47" rx="9" ry="11"/>
-          <ellipse cx="116" cy="37" rx="9" ry="11"/>
-          <ellipse cx="143" cy="37" rx="9" ry="11"/>
-          <ellipse cx="162" cy="47" rx="9" ry="11"/>
-          <ellipse cx="130" cy="70" rx="21" ry="15"/>
-        </g>
-
-      </g>
-    </svg>
+    <img src="Belgium_Logo.webp" alt="Belgium Campus Logo" class="logo-svg">
     <!-- ══ END LOGO ══ -->
 
     <div class="header-right">
@@ -467,37 +416,7 @@
     <div id="login-screen">
       <div class="login-card">
 
-        <!-- Larger version of the same inline SVG logo for the login card -->
         <img src="Belgium_Logo.webp" alt="Belgium Campus Logo" class="logo-svg">
-          <text x="0" y="82"
-            font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
-            font-weight="900" font-size="58"
-            class="bc-text-main">BELGIUM CAMPUS</text>
-          <text x="20" y="134"
-            font-family="Arial,Helvetica,sans-serif"
-            font-weight="400" font-size="46"
-            class="bc-text-sub">iTversity</text>
-          <g transform="translate(588, 3)">
-            <path class="bc-icon" d="M 75,0 L 196,0 Q 212,0 212,14 L 212,96 Q 212,110 196,110 L 75,110 L 75,86 L 186,86 L 186,24 L 75,24 Z"/>
-            <path class="bc-icon" d="M 14,52 L 137,52 L 137,76 L 26,76 L 26,138 L 137,138 L 137,162 L 14,162 Q 0,162 0,148 L 0,66 Q 0,52 14,52 Z"/>
-            <rect class="bc-icon" x="75" y="76" width="62" height="10"/>
-            <rect x="186" y="0" width="6.5" height="56" fill="#1a1a1a"/>
-            <rect x="192" y="0" width="6"   height="56" fill="#f5c518"/>
-            <rect x="198" y="0" width="6"   height="56" fill="#c0000c"/>
-            <rect x="204" y="0" width="8"   height="56" fill="#1a1a1a"/>
-            <g fill="#c0000c">
-              <ellipse cx="97"  cy="47" rx="9" ry="11"/>
-              <ellipse cx="116" cy="37" rx="9" ry="11"/>
-              <ellipse cx="143" cy="37" rx="9" ry="11"/>
-              <ellipse cx="162" cy="47" rx="9" ry="11"/>
-              <ellipse cx="130" cy="70" rx="21" ry="15"/>
-            </g>
-          </g>
-        </svg>
-
-        <h1>BC WildWatch™</h1>
-        <p class="login-tagline">Campus Animal Safety Reporting Portal</p>
-        <hr class="login-divider">
 
         <button class="ms-btn" onclick="signIn()">
           <!-- Microsoft four-square logo -->
