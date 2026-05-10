@@ -8,9 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
   <style>
 
-    /* ════════════════════════════════
-       THEME VARIABLES
-    ════════════════════════════════ */
     :root {
       --red:      #c0000c;
       --red-dark: #8a0008;
@@ -34,13 +31,12 @@
       --login-card:  #ffffff;
       --login-bdr:   #e0ddd7;
       --login-shadow:rgba(0,0,0,0.08);
+      --login-h1:    #c0000c;
+      --login-tag:   #777;
       --user-name:   #1a1a1a;
       --out-bdr:     #ddd;
       --out-text:    #666;
-      /* Logo colours in light mode */
-      --logo-icon:   #1a1a1a;
-      --logo-text:   #1a1a1a;
-      --logo-sub:    #888888;
+      --logo-filter: none;
     }
 
     [data-theme="dark"] {
@@ -60,18 +56,14 @@
       --login-card:  #1a1a1a;
       --login-bdr:   #2a2a2a;
       --login-shadow:rgba(0,0,0,0.5);
+      --login-h1:    #c0000c;
+      --login-tag:   #888;
       --user-name:   #f0ede6;
       --out-bdr:     #333;
       --out-text:    #888;
-      /* Logo colours in dark mode */
-      --logo-icon:   #e8e8e8;
-      --logo-text:   #e8e8e8;
-      --logo-sub:    #999999;
+      --logo-filter: brightness(0) invert(1);
     }
 
-    /* ════════════════════════════════
-       RESET
-    ════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
 
@@ -85,9 +77,6 @@
       transition: background 0.25s, color 0.25s;
     }
 
-     /* ════════════════════════════════
-       STRIPE BAR
-    ════════════════════════════════ */
     .stripe {
       height: 5px;
       flex-shrink: 0;
@@ -98,9 +87,6 @@
       );
     }
 
-    /* ════════════════════════════════
-       HEADER
-    ════════════════════════════════ */
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -113,19 +99,19 @@
       transition: background 0.25s, border-color 0.25s;
     }
 
-    .logo-svg {
-      height: 38px;
+    .header-logo {
+      height: 36px;
       width: auto;
+      filter: var(--logo-filter);
+      transition: filter 0.25s;
     }
 
-    /* Header right controls */
     .header-right {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    /* Theme toggle */
     .toggle-btn {
       width: 34px;
       height: 34px;
@@ -144,13 +130,11 @@
     .toggle-btn:hover { background: var(--bg); color: var(--text); }
     .toggle-btn svg { width: 15px; height: 15px; pointer-events: none; }
 
-    /* Light mode: show sun icon (to hint "switch to dark") */
     .icon-sun  { display: block; }
     .icon-moon { display: none; }
     [data-theme="dark"] .icon-sun  { display: none; }
     [data-theme="dark"] .icon-moon { display: block; }
 
-    /* Sign in button */
     .btn-signin {
       font-family: 'Oswald', sans-serif;
       font-size: 13px;
@@ -169,7 +153,6 @@
 
     .btn-signin:hover { background: var(--red-dark); }
 
-    /* User chip (shown after login) */
     .user-chip { display: flex; align-items: center; gap: 8px; }
 
     .user-avatar {
@@ -210,9 +193,6 @@
 
     .btn-signout:hover { color: var(--text); border-color: var(--text-muted); }
 
-    /* ════════════════════════════════
-       MAIN
-    ════════════════════════════════ */
     main {
       flex: 1;
       display: flex;
@@ -220,9 +200,6 @@
       overflow: hidden;
     }
 
-    /* ════════════════════════════════
-       LOGIN SCREEN
-    ════════════════════════════════ */
     #login-screen {
       flex: 1;
       display: flex;
@@ -238,7 +215,7 @@
       border: 1px solid var(--login-bdr);
       border-top: 4px solid var(--red);
       border-radius: 10px;
-      padding: 44px 36px 36px;
+      padding: 40px 36px 36px;
       max-width: 420px;
       width: 100%;
       text-align: center;
@@ -246,18 +223,28 @@
       transition: background 0.25s, border-color 0.25s;
     }
 
-    /* Large logo in login card */
-    .login-logo {
+    .login-paw {
+      width: 64px;
       height: 64px;
-      width: auto;
-      margin-bottom: 24px;
+      background: var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .login-paw svg {
+      width: 36px;
+      height: 36px;
+      fill: var(--yellow);
     }
 
     .login-card h1 {
       font-family: 'Oswald', sans-serif;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 700;
-      color: var(--red);
+      color: var(--login-h1);
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 4px;
@@ -265,7 +252,7 @@
 
     .login-tagline {
       font-size: 13px;
-      color: var(--text-muted);
+      color: var(--login-tag);
       margin-bottom: 28px;
     }
 
@@ -275,7 +262,6 @@
       margin: 0 0 24px;
     }
 
-    /* Microsoft sign-in button */
     .ms-btn {
       display: flex;
       align-items: center;
@@ -307,9 +293,6 @@
 
     .security-note strong { color: var(--red); font-weight: 600; }
 
-    /* ════════════════════════════════
-       APP SCREEN (after login)
-    ════════════════════════════════ */
     #app-screen {
       display: none;
       flex: 1;
@@ -346,9 +329,6 @@
       display: block;
     }
 
-    /* ════════════════════════════════
-       FOOTER
-    ════════════════════════════════ */
     footer {
       background: var(--footer-bg);
       padding: 8px 20px;
@@ -370,20 +350,9 @@
 
   <div class="stripe"></div>
 
-  <!-- ══ HEADER ══ -->
   <header>
-
-    <!--
-      ══════════════════════════════════════════════════
-      INLINE LOGO
-      ══════════════════════════════════════════════════
-    -->
-    <img src="Belgium_Logo.webp" alt="Belgium Campus Logo" class="login-logo">
-    <!-- ══ END LOGO ══ -->
-
+    <img class="header-logo" src="Belgium_Logo.webp" alt="Belgium Campus iTversity">
     <div class="header-right">
-
-      <!-- Light / Dark toggle -->
       <button class="toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="5"/>
@@ -400,33 +369,32 @@
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
-
-      <!-- Auth area -->
       <div id="header-auth">
         <button class="btn-signin" onclick="signIn()">Sign in with Microsoft</button>
       </div>
-
     </div>
   </header>
 
-  <!-- ══ MAIN ══ -->
   <main>
 
-    <!-- LOGIN SCREEN -->
     <div id="login-screen">
       <div class="login-card">
-      
-      <!-- Logo -->
-      <img src="Belgium_Logo.webp" alt="Belgium Campus Logo" class="login-logo">
 
-      <!-- Title + tagline -->
-      <h1>BC WildWatch™</h1>
-      <p class="login-tagline">Campus Animal Safety Reporting Portal</p>
-      <hr class="login-divider">
+        <div class="login-paw">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="6"    cy="5"   rx="2"   ry="2.8"/>
+            <ellipse cx="11.5" cy="3.5" rx="2"   ry="2.8"/>
+            <ellipse cx="17"   cy="5"   rx="2"   ry="2.8"/>
+            <ellipse cx="4.5"  cy="10"  rx="1.6" ry="2.2"/>
+            <path d="M7.5 10.5c0-3 9-3 9 0 0 5-2 8-4.5 8s-4.5-3-4.5-8z"/>
+          </svg>
+        </div>
 
-        <!-- Sign-in button -->
+        <h1>BC WildWatch™</h1>
+        <p class="login-tagline">Campus Animal Safety Reporting Portal</p>
+        <hr class="login-divider">
+
         <button class="ms-btn" onclick="signIn()">
-          <!-- Microsoft four-square logo -->
           <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
             <rect x="1"  y="1"  width="9" height="9" fill="#f25022"/>
             <rect x="11" y="1"  width="9" height="9" fill="#7fba00"/>
@@ -444,7 +412,6 @@
       </div>
     </div>
 
-    <!-- APP SCREEN (shown after login) -->
     <div id="app-screen">
       <div class="pagebar">
         <span class="pagebar-title">BC WildWatch™ — Campus Safety Portal</span>
@@ -460,25 +427,17 @@
 
   </main>
 
-  <!-- ══ FOOTER ══ -->
   <footer>
     <span>© 2026 <span class="f-red">Belgium Campus iTversity</span> · BC WildWatch™ · Group 20</span>
     <span>INL37(8)1 · <span class="f-gold">Microsoft Entra ID</span></span>
   </footer>
 
-  <!-- ══ MSAL — Microsoft Entra ID Auth ══ -->
   <script src="https://alcdn.msauth.net/browser/2.38.3/js/msal-browser.min.js"></script>
   <script>
 
-    /* ── THEME ──────────────────────────────────────────
-       Default = light. Only switches to dark if the user
-       has previously saved that preference.
-    ─────────────────────────────────────────────────── */
     (function () {
       const saved = localStorage.getItem('ww-theme');
-      if (saved === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
+      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
     })();
 
     function toggleTheme() {
@@ -488,17 +447,13 @@
       localStorage.setItem('ww-theme', next);
     }
 
-    /* ── MSAL / ENTRA ID ────────────────────────────────*/
     const msalConfig = {
       auth: {
         clientId:    "YOUR_APP_CLIENT_ID_HERE",
         authority:   "https://login.microsoftonline.com/ea1a909b-6600-4a25-82a5-0c6ed7d0513b",
         redirectUri: window.location.origin + window.location.pathname
       },
-      cache: {
-        cacheLocation:          "sessionStorage",
-        storeAuthStateInCookie: false
-      }
+      cache: { cacheLocation: "sessionStorage", storeAuthStateInCookie: false }
     };
 
     const loginRequest = { scopes: ["openid", "profile", "email", "User.Read"] };
@@ -517,7 +472,7 @@
         })
         .catch(err => console.warn("MSAL redirect:", err));
     } catch (e) {
-      console.warn("MSAL not available — demo mode active");
+      console.warn("MSAL not available");
     }
 
     function signIn() {
@@ -541,12 +496,10 @@
     function showApp(account) {
       document.getElementById("login-screen").style.display = "none";
       document.getElementById("app-screen").style.display   = "flex";
-
       const initials    = account.name
         ? account.name.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase()
         : "BC";
       const displayName = account.name || account.username;
-
       document.getElementById("header-auth").innerHTML = `
         <div class="user-chip">
           <div class="user-avatar">${initials}</div>
