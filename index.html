@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
   <style>
 
-    /* ── THEME VARIABLES ── */
     :root {
       --red:      #c0000c;
       --red-dark: #8a0008;
@@ -21,9 +20,6 @@
       --border:      #e0ddd7;
       --text:        #1a1a1a;
       --text-muted:  #777;
-      --text-faint:  #aaa;
-      --sidebar-bg:  #1a1a1a;
-      --nav-text:    #bbb;
       --stripe-gap:  #e0ddd7;
       --footer-bg:   #1a1a1a;
       --footer-text: #555;
@@ -38,9 +34,6 @@
       --border:      #2a2a2a;
       --text:        #f0ede6;
       --text-muted:  #888;
-      --text-faint:  #444;
-      --sidebar-bg:  #111111;
-      --nav-text:    #999;
       --stripe-gap:  #111;
       --footer-bg:   #111111;
       --footer-text: #444;
@@ -49,7 +42,6 @@
       --tog-bdr:     #333;
     }
 
-    /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
 
@@ -63,7 +55,7 @@
       transition: background 0.25s, color 0.25s;
     }
 
-    /* ── WARNING STRIPE ── */
+    /* ── STRIPE ── */
     .stripe {
       height: 5px;
       flex-shrink: 0;
@@ -127,7 +119,7 @@
       letter-spacing: 0.4px;
     }
 
-    /* Theme toggle button */
+    /* ── THEME TOGGLE ── */
     .toggle-btn {
       width: 34px;
       height: 34px;
@@ -150,89 +142,7 @@
     [data-theme="dark"] .icon-sun  { display: none; }
     [data-theme="dark"] .icon-moon { display: block; }
 
-    /* ── LAYOUT ── */
-    .layout {
-      display: flex;
-      flex: 1;
-      overflow: hidden;
-    }
-
-    /* ── SIDEBAR (always dark) ── */
-    .sidebar {
-      width: 190px;
-      background: var(--sidebar-bg);
-      display: flex;
-      flex-direction: column;
-      flex-shrink: 0;
-      padding: 20px 0 12px;
-      transition: background 0.25s;
-    }
-
-    .nav-section {
-      font-size: 9px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: #3a3a3a;
-      padding: 0 16px 8px;
-    }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      padding: 9px 16px;
-      color: var(--nav-text);
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      border-left: 3px solid transparent;
-      text-decoration: none;
-      transition: all 0.15s;
-      user-select: none;
-    }
-
-    .nav-item:hover {
-      color: #fff;
-      background: rgba(255,255,255,0.05);
-      border-left-color: #555;
-    }
-
-    .nav-item.active {
-      color: var(--yellow);
-      background: rgba(245,197,24,0.07);
-      border-left-color: var(--yellow);
-    }
-
-    .nav-item svg {
-      width: 15px;
-      height: 15px;
-      flex-shrink: 0;
-      opacity: 0.55;
-    }
-
-    .nav-item.active svg,
-    .nav-item:hover svg { opacity: 1; }
-
-    .nav-signout { color: #c0392b !important; }
-    .nav-signout svg { opacity: 1 !important; }
-
-    .sidebar-foot {
-      margin-top: auto;
-      padding: 13px 16px 0;
-      border-top: 1px solid #222;
-      font-size: 10px;
-      color: #333;
-      line-height: 1.7;
-    }
-
-    /* ── MAIN ── */
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
+    /* ── PAGE BAR ── */
     .pagebar {
       background: var(--pagebar-bg);
       border-bottom: 1px solid var(--pagebar-bdr);
@@ -240,7 +150,6 @@
       height: 44px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
       flex-shrink: 0;
       transition: background 0.25s, border-color 0.25s;
     }
@@ -254,6 +163,7 @@
       color: var(--text);
     }
 
+    /* ── IFRAME ── */
     .iframe-wrap {
       flex: 1;
       overflow: hidden;
@@ -292,7 +202,6 @@
   <header>
     <div class="logo">
       <div class="logo-icon">
-        <!-- Paw print -->
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <ellipse cx="6"    cy="5"   rx="2"   ry="2.8"/>
           <ellipse cx="11.5" cy="3.5" rx="2"   ry="2.8"/>
@@ -326,85 +235,18 @@
     </button>
   </header>
 
-  <!-- LAYOUT -->
-  <div class="layout">
+  <!-- PAGE BAR -->
+  <div class="pagebar">
+    <span class="pagebar-title">BC WildWatch™ — Campus Safety Portal</span>
+  </div>
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-      <div class="nav-section">Navigation</div>
-
-      <a class="nav-item active" onclick="setActive(this)">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-        </svg>
-        Dashboard
-      </a>
-
-      <a class="nav-item" onclick="setActive(this)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-          <line x1="12" y1="9"  x2="12" y2="13"/>
-          <line x1="12" y1="17" x2="12.01" y2="17"/>
-        </svg>
-        Report Incident
-      </a>
-
-      <a class="nav-item" onclick="setActive(this)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-        </svg>
-        My Reports
-      </a>
-
-      <a class="nav-item" onclick="setActive(this)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="2" y="3" width="20" height="14" rx="2"/>
-          <line x1="8"  y1="21" x2="16" y2="21"/>
-          <line x1="12" y1="17" x2="12" y2="21"/>
-        </svg>
-        Reports &amp; BI
-      </a>
-
-      <a class="nav-item" onclick="setActive(this)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-        Help &amp; Chatbot
-      </a>
-
-      <div style="margin-top:20px;">
-        <div class="nav-section">Account</div>
-        <a class="nav-item nav-signout">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-            <polyline points="16 17 21 12 16 7"/>
-            <line x1="21" y1="12" x2="9" y2="12"/>
-          </svg>
-          Sign Out
-        </a>
-      </div>
-
-      <div class="sidebar-foot">
-        <div>Module INL37(8)1</div>
-        <div>Group 20 &middot; 2026</div>
-      </div>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <main>
-      <div class="pagebar">
-        <span class="pagebar-title">Dashboard — Power Apps</span>
-      </div>
-      <div class="iframe-wrap">
-        <iframe
-          src="https://apps.powerapps.com/play/e/93aeb50b-f731-e2b9-bc9b-fcba74297f52/a/72a2b1a8-f9a6-4540-9f7e-14716ca192c3?tenantId=ea1a909b-6600-4a25-82a5-0c6ed7d0513b&hint=bfd67233-8d90-4ee9-bc81-76fb7b4cd82a&sourcetime=1774522195474"
-          allow="camera; microphone; geolocation"
-          title="BC WildWatch Power App">
-        </iframe>
-      </div>
-    </main>
-
+  <!-- POWER APPS IFRAME -->
+  <div class="iframe-wrap">
+    <iframe
+      src="https://apps.powerapps.com/play/e/93aeb50b-f731-e2b9-bc9b-fcba74297f52/a/72a2b1a8-f9a6-4540-9f7e-14716ca192c3?tenantId=ea1a909b-6600-4a25-82a5-0c6ed7d0513b&hint=bfd67233-8d90-4ee9-bc81-76fb7b4cd82a&sourcetime=1774522195474"
+      allow="camera; microphone; geolocation"
+      title="BC WildWatch Power App">
+    </iframe>
   </div>
 
   <!-- FOOTER -->
@@ -414,7 +256,6 @@
   </footer>
 
   <script>
-    // Restore saved theme on load (default is light)
     (function () {
       const saved = localStorage.getItem('ww-theme');
       if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
@@ -425,11 +266,6 @@
       const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', next);
       localStorage.setItem('ww-theme', next);
-    }
-
-    function setActive(el) {
-      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-      el.classList.add('active');
     }
   </script>
 
