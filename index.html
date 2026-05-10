@@ -31,8 +31,6 @@
       --login-card:  #ffffff;
       --login-bdr:   #e0ddd7;
       --login-shadow:rgba(0,0,0,0.08);
-      --login-h1:    #c0000c;
-      --login-tag:   #777;
       --user-name:   #1a1a1a;
       --out-bdr:     #ddd;
       --out-text:    #666;
@@ -56,8 +54,6 @@
       --login-card:  #1a1a1a;
       --login-bdr:   #2a2a2a;
       --login-shadow:rgba(0,0,0,0.5);
-      --login-h1:    #c0000c;
-      --login-tag:   #888;
       --user-name:   #f0ede6;
       --out-bdr:     #333;
       --out-text:    #888;
@@ -223,28 +219,19 @@
       transition: background 0.25s, border-color 0.25s;
     }
 
-    .login-paw {
-      width: 64px;
-      height: 64px;
-      background: var(--red);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-    }
-
-    .login-paw svg {
-      width: 36px;
-      height: 36px;
-      fill: var(--yellow);
+    .login-card-logo {
+      height: 56px;
+      width: auto;
+      margin-bottom: 24px;
+      filter: var(--logo-filter);
+      transition: filter 0.25s;
     }
 
     .login-card h1 {
       font-family: 'Oswald', sans-serif;
       font-size: 26px;
       font-weight: 700;
-      color: var(--login-h1);
+      color: var(--red);
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 4px;
@@ -252,7 +239,7 @@
 
     .login-tagline {
       font-size: 13px;
-      color: var(--login-tag);
+      color: var(--text-muted);
       margin-bottom: 28px;
     }
 
@@ -380,15 +367,7 @@
     <div id="login-screen">
       <div class="login-card">
 
-        <div class="login-paw">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="6"    cy="5"   rx="2"   ry="2.8"/>
-            <ellipse cx="11.5" cy="3.5" rx="2"   ry="2.8"/>
-            <ellipse cx="17"   cy="5"   rx="2"   ry="2.8"/>
-            <ellipse cx="4.5"  cy="10"  rx="1.6" ry="2.2"/>
-            <path d="M7.5 10.5c0-3 9-3 9 0 0 5-2 8-4.5 8s-4.5-3-4.5-8z"/>
-          </svg>
-        </div>
+        <img class="login-card-logo" src="Belgium_Logo.webp" alt="Belgium Campus iTversity">
 
         <h1>BC WildWatch™</h1>
         <p class="login-tagline">Campus Animal Safety Reporting Portal</p>
@@ -518,4 +497,5 @@
   </script>
 
 </body>
+</html>
 </html>
