@@ -475,7 +475,18 @@
       .form-area { padding: 20px 16px 32px; }
       .pagebar-title { font-size: 11px; }
     }
- 
+
+    .tab-btn {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 4px;
+      border: 1px solid var(--border);
+      background: transparent; color: var(--text-muted);
+      cursor: pointer; transition: all 0.15s;
+    }
+.tab-btn:hover { color: var(--text); border-color: var(--text-muted); }
+.tab-btn.active { background: var(--red); color: #fff; border-color: var(--red); }
   </style>
 </head>
 <body>
@@ -540,7 +551,11 @@
     <div id="app-screen">
       <div class="pagebar">
         <div class="pagebar-dot"></div>
-        <span class="pagebar-title">BC WildWatch™ — Submit an Incident Report</span>
+        <span class="pagebar-title" id="pagebar-title">BC WildWatch™ — Submit an Incident Report</span>
+        <div style="margin-left:auto; display:flex; gap:4px;">
+          <button class="tab-btn active" id="tab-report" onclick="showTab('report')">Report Incident</button>
+          <button class="tab-btn" id="tab-help" onclick="showTab('help')">Help & Safety</button>
+        </div>
       </div>
  
       <div class="form-area">
@@ -657,6 +672,52 @@
               </button>
             </div>
  
+          </div>
+        </div>
+      </div>
+      <!-- HELP PAGE -->
+      <div class="form-area" id="help-page" style="display:none;">
+        <div class="form-wrap">
+          <div class="form-header">
+            <h2><span class="red-bar"></span>Help & Safety</h2>
+            <p>Everything you need to know about reporting animal sightings on campus.</p>
+          </div>
+          <div style="display:flex; gap:12px; margin-bottom:24px;">
+            <button class="btn-submit" style="flex:1;">🚨 Report Incident</button>
+            <button class="btn-submit" style="flex:1; background:#1a1a1a;">📞 Call Security</button>
+          </div>
+          <div class="form-card" style="margin-bottom:16px;">
+            <div style="background:var(--red); color:#fff; padding:10px 16px; border-radius:5px; margin-bottom:16px;">
+              <strong style="font-family:'Oswald',sans-serif; letter-spacing:0.8px; text-transform:uppercase; font-size:13px;">How to Report Animals</strong>
+            </div>
+            <ol style="padding-left:20px; line-height:2; font-size:14px; color:var(--text);">
+              <li>Go to the Report Incident tab</li>
+              <li>Select the animal type and your campus/zone</li>
+              <li>Describe what you saw and use "Locate Me" for GPS</li>
+              <li>Click Submit — security will be notified immediately</li>
+            </ol>
+          </div>
+          <div class="form-card" style="margin-bottom:16px;">
+            <div style="background:var(--red); color:#fff; padding:10px 16px; border-radius:5px; margin-bottom:16px;">
+              <strong style="font-family:'Oswald',sans-serif; letter-spacing:0.8px; text-transform:uppercase; font-size:13px;">Safety Tips</strong>
+            </div>
+            <div style="font-size:14px; color:var(--text); line-height:1.8;">
+              <p style="margin-bottom:10px;">🐍 <strong>Snakes:</strong> Keep your distance, do not provoke. Alert security immediately.</p>
+              <p style="margin-bottom:10px;">🐝 <strong>Bees:</strong> Move away slowly, do not swat. Cover your face if swarming.</p>
+              <p style="margin-bottom:10px;">🐕 <strong>Stray animals:</strong> Do not approach or feed. Report to security.</p>
+              <p style="margin-bottom:10px;">🪳 <strong>Cockroaches/Pests:</strong> Note the location and report. Do not disturb.</p>
+              <p>🕷 <strong>Spiders:</strong> Keep distance, check shoes and clothing in affected areas.</p>
+            </div>
+          </div>
+          <div class="form-card">
+            <div style="background:var(--red); color:#fff; padding:10px 16px; border-radius:5px; margin-bottom:16px;">
+              <strong style="font-family:'Oswald',sans-serif; letter-spacing:0.8px; text-transform:uppercase; font-size:13px;">What Happens Next?</strong>
+            </div>
+            <div style="font-size:14px; color:var(--text); line-height:1.8;">
+              <p style="margin-bottom:10px;">Once you submit a report, our security team will be notified and will dispatch a trained responder to assess the situation.</p>
+              <p style="margin-bottom:10px;">For non-emergencies, please allow up to <strong>30 minutes – 1 hour</strong> for a response during business hours.</p>
+              <p>The responder will safely handle the animal, which may involve relocation, contacting professional wildlife services, or providing aid.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -901,7 +962,15 @@
       resetFormFields();
       document.getElementById('field-reporter').value = '';
     }
- 
+
+    function showTab(tab) {
+      document.getElementById('help-page').style.display  = tab === 'help'   ? 'flex' : 'none';
+      document.querySelector('.form-area').style.display  = tab === 'report' ? 'flex' : 'none';
+      document.getElementById('tab-report').classList.toggle('active', tab === 'report');
+      document.getElementById('tab-help').classList.toggle('active',   tab === 'help');
+      document.getElementById('pagebar-title').textContent =
+        tab === 'help' ? 'BC WildWatch™ — Help & Safety' : 'BC WildWatch™ — Submit an Incident Report';
+    } 
   </script>
  
 </body>
