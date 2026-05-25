@@ -551,7 +551,7 @@
     <div id="app-screen">
       <div class="pagebar">
         <div class="pagebar-dot"></div>
-        <span class="pagebar-title" id="pagebar-title">BC WildWatch™ — Submit an Incident Report</span>
+        <span class="pagebar-title" id="pagebar-title">BC WildWatch™ - Submit an Incident Report</span>
         <div style="margin-left:auto; display:flex; gap:4px;">
           <button class="tab-btn active" id="tab-report" onclick="showTab('report')">Report Incident</button>
           <button class="tab-btn" id="tab-help" onclick="showTab('help')">Help & Safety</button>
@@ -683,8 +683,8 @@
             <p>Everything you need to know about reporting animal sightings on campus.</p>
           </div>
           <div style="display:flex; gap:12px; margin-bottom:24px;">
-            <button class="btn-submit" style="flex:1;">Report Incident</button>
-            <button class="btn-submit" style="flex:1; background:#1a1a1a;">Call Security</button>
+            <button class="btn-submit" style="flex:1;" onclick="showTab('report')">Report Incident</button>
+            <button class="btn-submit" style="flex:1; background:#1a1a1a;" onclick="window.location.href='tel:061 685 1004'">Call Security</button>
           </div>
           <div class="form-card" style="margin-bottom:16px;">
             <div style="background:var(--red); color:#fff; padding:10px 16px; border-radius:5px; margin-bottom:16px;">
@@ -969,7 +969,7 @@
       document.getElementById('tab-report').classList.toggle('active', tab === 'report');
       document.getElementById('tab-help').classList.toggle('active',   tab === 'help');
       document.getElementById('pagebar-title').textContent =
-        tab === 'help' ? 'BC WildWatch™ — Help & Safety' : 'BC WildWatch™ — Submit an Incident Report';
+        tab === 'help' ? 'BC WildWatch™ — Help & Safety' : 'BC WildWatch™ - Submit an Incident Report';
     } 
   </script>
  
