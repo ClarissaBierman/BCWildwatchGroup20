@@ -7,62 +7,86 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
   <style>
-
+ 
     :root {
       --red:      #c0000c;
       --red-dark: #8a0008;
       --yellow:   #f5c518;
     }
-
+ 
     [data-theme="light"] {
-      --bg:          #f4f2ee;
-      --surface:     #ffffff;
-      --border:      #e0ddd7;
-      --text:        #1a1a1a;
-      --text-muted:  #777;
-      --text-faint:  #bbb;
-      --stripe-gap:  #e0ddd7;
-      --footer-bg:   #1a1a1a;
-      --footer-text: #555;
-      --pagebar-bg:  #ffffff;
-      --pagebar-bdr: #e0ddd7;
-      --tog-bdr:     #e0ddd7;
-      --login-bg:    #f4f2ee;
-      --login-card:  #ffffff;
-      --login-bdr:   #e0ddd7;
-      --login-shadow:rgba(0,0,0,0.08);
-      --user-name:   #1a1a1a;
-      --out-bdr:     #ddd;
-      --out-text:    #666;
-      --logo-filter: none;
+      --bg:           #f4f2ee;
+      --surface:      #ffffff;
+      --border:       #e0ddd7;
+      --text:         #1a1a1a;
+      --text-muted:   #777;
+      --text-faint:   #bbb;
+      --stripe-gap:   #e0ddd7;
+      --footer-bg:    #1a1a1a;
+      --footer-text:  #555;
+      --pagebar-bg:   #ffffff;
+      --pagebar-bdr:  #e0ddd7;
+      --tog-bdr:      #e0ddd7;
+      --login-bg:     #f4f2ee;
+      --login-card:   #ffffff;
+      --login-bdr:    #e0ddd7;
+      --login-shadow: rgba(0,0,0,0.08);
+      --user-name:    #1a1a1a;
+      --out-bdr:      #ddd;
+      --out-text:     #666;
+      --logo-filter:  none;
+      --form-bg:      #f9f8f6;
+      --input-bg:     #ffffff;
+      --input-bdr:    #d8d5cf;
+      --input-focus:  #c0000c;
+      --label-color:  #444;
+      --card-shadow:  rgba(0,0,0,0.06);
+      --success-bg:   #f0fdf4;
+      --success-bdr:  #86efac;
+      --success-text: #166534;
+      --error-bg:     #fef2f2;
+      --error-bdr:    #fca5a5;
+      --error-text:   #991b1b;
     }
-
+ 
     [data-theme="dark"] {
-      --bg:          #0d0d0d;
-      --surface:     #1a1a1a;
-      --border:      #2a2a2a;
-      --text:        #f0ede6;
-      --text-muted:  #888;
-      --text-faint:  #555;
-      --stripe-gap:  #111;
-      --footer-bg:   #111111;
-      --footer-text: #444;
-      --pagebar-bg:  #1a1a1a;
-      --pagebar-bdr: #2a2a2a;
-      --tog-bdr:     #333;
-      --login-bg:    #0d0d0d;
-      --login-card:  #1a1a1a;
-      --login-bdr:   #2a2a2a;
-      --login-shadow:rgba(0,0,0,0.5);
-      --user-name:   #f0ede6;
-      --out-bdr:     #333;
-      --out-text:    #888;
-      --logo-filter: brightness(0) invert(1);
+      --bg:           #0d0d0d;
+      --surface:      #1a1a1a;
+      --border:       #2a2a2a;
+      --text:         #f0ede6;
+      --text-muted:   #888;
+      --text-faint:   #555;
+      --stripe-gap:   #111;
+      --footer-bg:    #111111;
+      --footer-text:  #444;
+      --pagebar-bg:   #1a1a1a;
+      --pagebar-bdr:  #2a2a2a;
+      --tog-bdr:      #333;
+      --login-bg:     #0d0d0d;
+      --login-card:   #1a1a1a;
+      --login-bdr:    #2a2a2a;
+      --login-shadow: rgba(0,0,0,0.5);
+      --user-name:    #f0ede6;
+      --out-bdr:      #333;
+      --out-text:     #888;
+      --logo-filter:  brightness(0) invert(1);
+      --form-bg:      #111111;
+      --input-bg:     #1e1e1e;
+      --input-bdr:    #333;
+      --input-focus:  #e0000e;
+      --label-color:  #aaa;
+      --card-shadow:  rgba(0,0,0,0.4);
+      --success-bg:   #052e16;
+      --success-bdr:  #166534;
+      --success-text: #86efac;
+      --error-bg:     #1c0a0a;
+      --error-bdr:    #991b1b;
+      --error-text:   #fca5a5;
     }
-
+ 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
-
+ 
     body {
       font-family: 'Source Sans 3', sans-serif;
       background: var(--bg);
@@ -72,7 +96,7 @@
       height: 100vh;
       transition: background 0.25s, color 0.25s;
     }
-
+ 
     .stripe {
       height: 5px;
       flex-shrink: 0;
@@ -94,263 +118,384 @@
       flex-shrink: 0;
       transition: background 0.25s, border-color 0.25s;
     }
-
+ 
     .header-logo {
       height: 36px;
       width: auto;
       filter: var(--logo-filter);
       transition: filter 0.25s;
     }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+ 
+    .header-right { display: flex; align-items: center; gap: 10px; }
+ 
     .toggle-btn {
-      width: 34px;
-      height: 34px;
+      width: 34px; height: 34px;
       border: 1px solid var(--tog-bdr);
       background: transparent;
       border-radius: 6px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       color: var(--text-muted);
       transition: background 0.2s, color 0.2s;
       flex-shrink: 0;
     }
-
     .toggle-btn:hover { background: var(--bg); color: var(--text); }
     .toggle-btn svg { width: 15px; height: 15px; pointer-events: none; }
-
     .icon-sun  { display: block; }
     .icon-moon { display: none; }
     [data-theme="dark"] .icon-sun  { display: none; }
     [data-theme="dark"] .icon-moon { display: block; }
-
+ 
     .btn-signin {
       font-family: 'Oswald', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      background: var(--red);
-      color: #fff;
-      border: none;
-      padding: 8px 18px;
-      border-radius: 5px;
-      cursor: pointer;
-      white-space: nowrap;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      background: var(--red); color: #fff;
+      border: none; padding: 8px 18px;
+      border-radius: 5px; cursor: pointer; white-space: nowrap;
       transition: background 0.2s;
     }
-
     .btn-signin:hover { background: var(--red-dark); }
-
+ 
     .user-chip { display: flex; align-items: center; gap: 8px; }
-
     .user-avatar {
-      width: 30px;
-      height: 30px;
-      background: var(--red);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 30px; height: 30px;
+      background: var(--red); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
       font-family: 'Oswald', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      color: #fff;
-      flex-shrink: 0;
+      font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0;
     }
-
     .user-name {
-      font-size: 13px;
-      color: var(--user-name);
-      max-width: 140px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      font-size: 13px; color: var(--user-name);
+      max-width: 140px; overflow: hidden;
+      text-overflow: ellipsis; white-space: nowrap;
     }
-
     .btn-signout {
-      font-size: 12px;
-      background: transparent;
-      color: var(--out-text);
-      border: 1px solid var(--out-bdr);
-      padding: 5px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.15s;
+      font-size: 12px; background: transparent;
+      color: var(--out-text); border: 1px solid var(--out-bdr);
+      padding: 5px 12px; border-radius: 4px; cursor: pointer;
+      white-space: nowrap; transition: all 0.15s;
     }
-
     .btn-signout:hover { color: var(--text); border-color: var(--text-muted); }
 
     main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      flex: 1; display: flex; flex-direction: column; overflow: hidden;
     }
 
     #login-screen {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--login-bg);
-      padding: 24px;
+      flex: 1; display: flex;
+      align-items: center; justify-content: center;
+      background: var(--login-bg); padding: 24px;
       transition: background 0.25s;
     }
-
+ 
     .login-card {
       background: var(--login-card);
       border: 1px solid var(--login-bdr);
       border-top: 4px solid var(--red);
       border-radius: 10px;
       padding: 40px 36px 36px;
-      max-width: 420px;
-      width: 100%;
+      max-width: 420px; width: 100%;
       text-align: center;
       box-shadow: 0 4px 28px var(--login-shadow);
       transition: background 0.25s, border-color 0.25s;
     }
-
+ 
     .login-card-logo {
-      height: 56px;
-      width: auto;
+      height: 56px; width: auto;
       margin-bottom: 24px;
       filter: var(--logo-filter);
       transition: filter 0.25s;
     }
-
+ 
     .login-card h1 {
       font-family: 'Oswald', sans-serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--red);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 4px;
+      font-size: 26px; font-weight: 700;
+      color: var(--red); letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 4px;
     }
-
+ 
     .login-tagline {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 28px;
+      font-size: 13px; color: var(--text-muted); margin-bottom: 28px;
     }
-
+ 
     .login-divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0 0 24px;
+      border: none; border-top: 1px solid var(--border); margin: 0 0 24px;
     }
-
+ 
     .ms-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      width: 100%;
-      padding: 12px 20px;
-      background: #ffffff;
-      color: #1a1a1a;
-      border: 1px solid #d0d0d0;
-      border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; width: 100%; padding: 12px 20px;
+      background: #ffffff; color: #1a1a1a;
+      border: 1px solid #d0d0d0; border-radius: 5px;
       font-family: 'Source Sans 3', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
+      font-size: 14px; font-weight: 600; cursor: pointer;
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
       transition: background 0.15s;
     }
-
     .ms-btn:hover { background: #f0f0f0; }
     .ms-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
-
+ 
     .security-note {
-      margin-top: 18px;
-      font-size: 11px;
-      color: var(--text-faint);
-      line-height: 1.6;
+      margin-top: 18px; font-size: 11px;
+      color: var(--text-faint); line-height: 1.6;
     }
-
     .security-note strong { color: var(--red); font-weight: 600; }
 
     #app-screen {
-      display: none;
-      flex: 1;
-      flex-direction: column;
-      overflow: hidden;
+      display: none; flex: 1; flex-direction: column; overflow: hidden;
     }
-
+ 
     .pagebar {
       background: var(--pagebar-bg);
       border-bottom: 1px solid var(--pagebar-bdr);
-      padding: 0 18px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
+      padding: 0 18px; height: 42px;
+      display: flex; align-items: center;
+      gap: 16px; flex-shrink: 0;
       transition: background 0.25s, border-color 0.25s;
     }
-
+ 
     .pagebar-title {
       font-family: 'Oswald', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.8px; text-transform: uppercase;
       color: var(--text);
     }
+ 
+    .pagebar-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%; background: var(--red);
+      flex-shrink: 0;
+    }
 
-    .iframe-wrap { flex: 1; overflow: hidden; }
-
-    .iframe-wrap iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+    .form-area {
+      flex: 1; overflow-y: auto;
+      background: var(--form-bg);
+      padding: 32px 24px 40px;
+      transition: background 0.25s;
+    }
+ 
+    .form-wrap {
+      max-width: 640px; margin: 0 auto;
+    }
+ 
+    .form-header {
+      margin-bottom: 28px;
+    }
+ 
+    .form-header h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--text); letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+    }
+ 
+    .form-header h2 span.red-bar {
+      display: inline-block;
+      width: 4px; height: 22px;
+      background: var(--red); border-radius: 2px;
+    }
+ 
+    .form-header p {
+      font-size: 13px; color: var(--text-muted);
+      margin-top: 6px; margin-left: 14px;
+    }
+ 
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 28px 24px;
+      box-shadow: 0 2px 12px var(--card-shadow);
+      transition: background 0.25s, border-color 0.25s;
+    }
+ 
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+ 
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group:last-of-type { margin-bottom: 0; }
+ 
+    .form-group label {
       display: block;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      color: var(--label-color); margin-bottom: 6px;
+    }
+ 
+    .form-group label .req { color: var(--red); margin-left: 2px; }
+ 
+    .form-control {
+      width: 100%; padding: 10px 13px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-bdr);
+      border-radius: 5px; font-size: 14px;
+      color: var(--text);
+      font-family: 'Source Sans 3', sans-serif;
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.25s;
+      appearance: none; -webkit-appearance: none;
+      outline: none;
+    }
+ 
+    .form-control:focus {
+      border-color: var(--input-focus);
+      box-shadow: 0 0 0 3px rgba(192,0,12,0.12);
+    }
+ 
+    select.form-control {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+ 
+    textarea.form-control { resize: vertical; min-height: 90px; line-height: 1.5; }
+
+    .loc-row {
+      display: flex; gap: 8px; align-items: flex-end;
+    }
+ 
+    .loc-row .form-control {
+      font-size: 13px; color: var(--text-muted);
+    }
+ 
+    .loc-btn {
+      flex-shrink: 0;
+      padding: 10px 14px;
+      background: var(--red); color: #fff;
+      border: none; border-radius: 5px; cursor: pointer;
+      font-size: 12px; font-weight: 600;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      white-space: nowrap;
+      transition: background 0.15s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .loc-btn:hover { background: var(--red-dark); }
+    .loc-btn:disabled { background: #aaa; cursor: not-allowed; }
+ 
+    .loc-hint {
+      font-size: 11px; color: var(--text-muted);
+      margin-top: 5px; display: flex; align-items: center; gap: 5px;
+    }
+
+    .form-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 24px 0;
+    }
+
+    .btn-submit {
+      width: 100%; padding: 13px;
+      background: var(--red); color: #fff;
+      border: none; border-radius: 5px; cursor: pointer;
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px; font-weight: 600;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      transition: background 0.2s, transform 0.1s;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .btn-submit:hover { background: var(--red-dark); }
+    .btn-submit:active { transform: scale(0.99); }
+    .btn-submit:disabled { background: #aaa; cursor: not-allowed; }
+ 
+    .btn-submit .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+ 
+    @keyframes spin { to { transform: rotate(360deg); } }
+ 
+    .btn-submit.loading .spinner { display: block; }
+    .btn-submit.loading .btn-text { opacity: 0.7; }
+
+    .alert {
+      padding: 14px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      border: 1px solid;
+      display: none;
+      line-height: 1.5;
+    }
+    .alert.show { display: block; }
+    .alert-success {
+      background: var(--success-bg);
+      border-color: var(--success-bdr);
+      color: var(--success-text);
+    }
+    .alert-error {
+      background: var(--error-bg);
+      border-color: var(--error-bdr);
+      color: var(--error-text);
+    }
+    .alert strong { font-weight: 600; }
+
+    .animal-chips {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+    }
+    .animal-chip {
+      padding: 5px 12px;
+      border: 1px solid var(--input-bdr);
+      border-radius: 20px;
+      font-size: 12px; cursor: pointer;
+      background: var(--input-bg);
+      color: var(--text-muted);
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .animal-chip:hover { border-color: var(--red); color: var(--red); }
+    .animal-chip.active {
+      background: var(--red); border-color: var(--red);
+      color: #fff;
     }
 
     footer {
       background: var(--footer-bg);
       padding: 8px 20px;
-      font-size: 10px;
-      color: var(--footer-text);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-shrink: 0;
-      transition: background 0.25s;
+      font-size: 10px; color: var(--footer-text);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-shrink: 0; transition: background 0.25s;
     }
-
     .f-red  { color: var(--red); font-weight: 600; }
     .f-gold { color: #c9a000; }
-
+ 
+    @media (max-width: 560px) {
+      .form-row { grid-template-columns: 1fr; }
+      .form-card { padding: 20px 16px; }
+      .form-area { padding: 20px 16px 32px; }
+      .pagebar-title { font-size: 11px; }
+    }
+ 
   </style>
 </head>
 <body>
-
+ 
   <div class="stripe"></div>
-
+ 
   <header>
-    <img class="header-logo" src="Belgium_Logo.webp" alt="Belgium Campus iTversity">
+    <img class="header-logo" src="Belgium_Logo.webp" alt="Belgium Campus iTversity"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span style="display:none; font-family:'Oswald',sans-serif; font-size:18px; font-weight:700; color:var(--red); letter-spacing:1px;">BELGIUM CAMPUS iTversity</span>
     <div class="header-right">
       <button class="toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1"  x2="12" y2="3"/>
-          <line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22"   x2="5.64" y2="5.64"/>
+          <line x1="12" y1="1"  x2="12" y2="3"/>  <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
           <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1"  y1="12" x2="3"  y2="12"/>
-          <line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78"  x2="5.64" y2="18.36"/>
-          <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>    <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
@@ -361,18 +506,19 @@
       </div>
     </div>
   </header>
-
+ 
   <main>
 
     <div id="login-screen">
       <div class="login-card">
-
-        <img class="login-card-logo" src="Belgium_Logo.webp" alt="Belgium Campus iTversity">
-
+ 
+        <img class="login-card-logo" src="Belgium_Logo.webp" alt="Belgium Campus iTversity"
+             onerror="this.style.display='none'">
+ 
         <h1>BC WildWatch™</h1>
         <p class="login-tagline">Campus Animal Safety Reporting Portal</p>
         <hr class="login-divider">
-
+ 
         <button class="ms-btn" onclick="signIn()">
           <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
             <rect x="1"  y="1"  width="9" height="9" fill="#f25022"/>
@@ -382,43 +528,155 @@
           </svg>
           Sign in with Microsoft 365
         </button>
-
+ 
         <p class="security-note">
           Secured with <strong>Azure AD / Entra ID</strong>.<br>
           Belgium Campus iTversity M365 A3 accounts only.
         </p>
-
+ 
       </div>
     </div>
 
     <div id="app-screen">
       <div class="pagebar">
-        <span class="pagebar-title">BC WildWatch™ — Campus Safety Portal</span>
+        <div class="pagebar-dot"></div>
+        <span class="pagebar-title">BC WildWatch™ — Submit an Incident Report</span>
       </div>
-      <div class="iframe-wrap">
-        <iframe
-          src="https://apps.powerapps.com/play/e/93aeb50b-f731-e2b9-bc9b-fcba74297f52/a/72a2b1a8-f9a6-4540-9f7e-14716ca192c3?tenantId=ea1a909b-6600-4a25-82a5-0c6ed7d0513b&hint=bfd67233-8d90-4ee9-bc81-76fb7b4cd82a&sourcetime=1774522195474"
-          allow="camera; microphone; geolocation"
-          title="BC WildWatch Power App">
-        </iframe>
+ 
+      <div class="form-area">
+        <div class="form-wrap">
+ 
+          <div class="form-header">
+            <h2><span class="red-bar"></span>Report an Animal Sighting</h2>
+            <p>Fill in all required fields and submit. Your report goes directly to the BC WildWatch™ system.</p>
+          </div>
+
+          <div class="alert alert-success" id="alert-success">
+            <strong>✓ Report submitted successfully!</strong><br>
+            Your sighting has been logged. Campus security has been notified. Thank you for keeping BC safe.
+          </div>
+          <div class="alert alert-error" id="alert-error">
+            <strong>⚠ Submission failed.</strong><br>
+            <span id="error-detail">Please check your connection and try again.</span>
+          </div>
+ 
+          <div class="form-card">
+
+            <div class="form-group">
+              <label>Animal Type <span class="req">*</span></label>
+              <div class="animal-chips" id="animal-chips">
+                <span class="animal-chip" onclick="selectAnimal('Snake', this)">🐍 Snake</span>
+                <span class="animal-chip" onclick="selectAnimal('Bees', this)">🐝 Bees</span>
+                <span class="animal-chip" onclick="selectAnimal('Stray Dog', this)">🐕 Stray Dog</span>
+                <span class="animal-chip" onclick="selectAnimal('Cockroach', this)">🪳 Cockroach</span>
+                <span class="animal-chip" onclick="selectAnimal('Spider', this)">🕷 Spider</span>
+                <span class="animal-chip" onclick="selectAnimal('Other', this)">⚠ Other</span>
+              </div>
+              <select class="form-control" id="field-animal" required>
+                <option value="" disabled selected>— Select animal type —</option>
+                <option>Snake</option>
+                <option>Bees</option>
+                <option>Stray Dog</option>
+                <option>Cockroach</option>
+                <option>Spider</option>
+                <option>Vervet Monkey</option>
+                <option>Wasp</option>
+                <option>Rat / Mouse</option>
+                <option>Other</option>
+              </select>
+            </div>
+ 
+            <hr class="form-divider">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Campus <span class="req">*</span></label>
+                <select class="form-control" id="field-campus" required>
+                  <option value="" disabled selected>— Select campus —</option>
+                  <option>Kempton Park Campus</option>
+                  <option>Pretoria Campus</option>
+                  <option>Stellenbosch Campus</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Zone <span class="req">*</span></label>
+                <select class="form-control" id="field-zone" required>
+                  <option value="" disabled selected>— Select zone —</option>
+                  <option>Main Campus</option>
+                  <option>North Campus</option>
+                  <option>West Campus</option>
+                  <option>Parking Area</option>
+                  <option>Sports Fields</option>
+                  <option>Residences</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Description <span class="req">*</span></label>
+              <textarea class="form-control" id="field-description"
+                placeholder="Describe what you saw, exact location (e.g. near Building A parking), any immediate danger..." required></textarea>
+            </div>
+ 
+            <hr class="form-divider">
+
+            <div class="form-group">
+              <label>GPS Location</label>
+              <div class="loc-row">
+                <input type="text" class="form-control" id="field-lat"
+                  placeholder="Latitude" readonly style="flex:1">
+                <input type="text" class="form-control" id="field-lng"
+                  placeholder="Longitude" readonly style="flex:1">
+                <button class="loc-btn" id="loc-btn" type="button" onclick="getLocation()">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/>
+                  </svg>
+                  Locate Me
+                </button>
+              </div>
+              <p class="loc-hint">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                Optional but recommended. Click "Locate Me" to auto-fill your coordinates.
+              </p>
+            </div>
+ 
+            <hr class="form-divider">
+
+            <div class="form-group">
+              <label>Reported By</label>
+              <input type="text" class="form-control" id="field-reporter"
+                placeholder="Signing in will fill this automatically" readonly>
+            </div>
+ 
+            <div style="margin-top: 24px;">
+              <button class="btn-submit" id="btn-submit" type="button" onclick="submitReport()">
+                <div class="spinner" id="spinner"></div>
+                <span class="btn-text" id="btn-text">Submit Incident Report</span>
+              </button>
+            </div>
+ 
+          </div>
+        </div>
       </div>
     </div>
-
+ 
   </main>
-
+ 
   <footer>
     <span>© 2026 <span class="f-red">Belgium Campus iTversity</span> · BC WildWatch™ · Group 20</span>
     <span>INL37(8)1 · <span class="f-gold">Microsoft Entra ID</span></span>
   </footer>
 
   <script src="https://alcdn.msauth.net/browser/2.38.3/js/msal-browser.min.js"></script>
+ 
   <script>
-
     (function () {
       const saved = localStorage.getItem('ww-theme');
       if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
     })();
-
+ 
     function toggleTheme() {
       const html = document.documentElement;
       const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -426,76 +684,225 @@
       localStorage.setItem('ww-theme', next);
     }
 
+    const TENANT_ID = 'ea1a909b-6600-4a25-82a5-0c6ed7d0513b';
+ 
     const msalConfig = {
       auth: {
-        clientId:    "YOUR_APP_CLIENT_ID_HERE",
-        authority:   "https://login.microsoftonline.com/ea1a909b-6600-4a25-82a5-0c6ed7d0513b",
+        clientId:    'YOUR_APP_CLIENT_ID_HERE',
+        authority:   'https://login.microsoftonline.com/' + TENANT_ID,
         redirectUri: window.location.origin + window.location.pathname
       },
-      cache: { cacheLocation: "sessionStorage", storeAuthStateInCookie: false }
+      cache: { cacheLocation: 'sessionStorage', storeAuthStateInCookie: false }
     };
-
-    const loginRequest = { scopes: ["openid", "profile", "email", "User.Read"] };
+ 
+    const loginRequest = { scopes: ['openid', 'profile', 'email', 'User.Read'] };
     let msalInstance = null;
-
+    let currentUser  = null;
+ 
     try {
       msalInstance = new msal.PublicClientApplication(msalConfig);
       msalInstance.handleRedirectPromise()
         .then(response => {
-          if (response) {
-            showApp(response.account);
-          } else {
+          if (response)                         showApp(response.account);
+          else {
             const accounts = msalInstance.getAllAccounts();
             if (accounts.length > 0) showApp(accounts[0]);
           }
         })
-        .catch(err => console.warn("MSAL redirect:", err));
+        .catch(err => console.warn('MSAL redirect:', err));
     } catch (e) {
-      console.warn("MSAL not available");
+      console.warn('MSAL init failed — running in demo mode');
     }
-
+ 
     function signIn() {
-      if (!msalInstance) {
-        showApp({ name: "Demo User", username: "demo@belgiumcampus.ac.za" });
+      if (!msalInstance || msalConfig.auth.clientId === 'YOUR_APP_CLIENT_ID_HERE') {
+        showApp({ name: 'Demo User', username: 'demo@belgiumcampus.ac.za' });
         return;
       }
       msalInstance.loginPopup(loginRequest)
         .then(r  => showApp(r.account))
-        .catch(err => console.error("Login failed:", err));
+        .catch(err => console.error('Login failed:', err));
     }
-
+ 
     function signOut() {
-      if (msalInstance) {
+      if (msalInstance && msalConfig.auth.clientId !== 'YOUR_APP_CLIENT_ID_HERE') {
         msalInstance.logoutPopup().then(() => hideApp());
       } else {
         hideApp();
       }
     }
-
+ 
     function showApp(account) {
-      document.getElementById("login-screen").style.display = "none";
-      document.getElementById("app-screen").style.display   = "flex";
-      const initials    = account.name
-        ? account.name.split(" ").map(n => n[0]).join("").substring(0, 2).toUpperCase()
-        : "BC";
-      const displayName = account.name || account.username;
-      document.getElementById("header-auth").innerHTML = `
+      currentUser = account;
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('app-screen').style.display   = 'flex';
+ 
+      const initials = account.name
+        ? account.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()
+        : 'BC';
+ 
+      document.getElementById('header-auth').innerHTML = `
         <div class="user-chip">
           <div class="user-avatar">${initials}</div>
-          <span class="user-name">${displayName}</span>
+          <span class="user-name">${account.name || account.username}</span>
           <button class="btn-signout" onclick="signOut()">Sign out</button>
         </div>`;
+ 
+      document.getElementById('field-reporter').value = account.username || account.name || '';
     }
-
+ 
     function hideApp() {
-      document.getElementById("app-screen").style.display   = "none";
-      document.getElementById("login-screen").style.display = "flex";
-      document.getElementById("header-auth").innerHTML =
+      currentUser = null;
+      document.getElementById('app-screen').style.display   = 'none';
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('header-auth').innerHTML =
         `<button class="btn-signin" onclick="signIn()">Sign in with Microsoft</button>`;
+      resetForm();
     }
 
-  </script>
+    function selectAnimal(value, chip) {
+      document.querySelectorAll('.animal-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      document.getElementById('field-animal').value = value;
+    }
+ 
+    document.getElementById('field-animal').addEventListener('change', function () {
+      const v = this.value;
+      document.querySelectorAll('.animal-chip').forEach(c => {
+        c.classList.toggle('active', c.textContent.trim().includes(v));
+      });
+    });
+ 
+    function getLocation() {
+      const btn = document.getElementById('loc-btn');
+      if (!navigator.geolocation) {
+        alert('Geolocation is not supported by your browser.');
+        return;
+      }
+      btn.disabled = true;
+      btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 0.7s linear infinite"><circle cx="12" cy="12" r="10"/></svg> Locating…`;
+ 
+      navigator.geolocation.getCurrentPosition(
+        pos => {
+          document.getElementById('field-lat').value = pos.coords.latitude.toFixed(6);
+          document.getElementById('field-lng').value = pos.coords.longitude.toFixed(6);
+          btn.disabled = false;
+          btn.innerHTML = `✓ Got It`;
+          setTimeout(() => {
+            btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/></svg> Locate Me`;
+          }, 2000);
+        },
+        err => {
+          btn.disabled = false;
+          btn.innerHTML = `Locate Me`;
+          console.warn('Geolocation error:', err.message);
+        },
+        { timeout: 8000 }
+      );
+    }
+    const FLOW_URL = 'https://defaultea1a909b66004a2582a50c6ed7d051.3b.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/8ccbfdd25aa341fb8735d713b582db14/triggers/manual/paths/invoke?api-version=1';
+ 
+    async function submitReport() {
+      hideAlerts();
+ 
+      const animal      = document.getElementById('field-animal').value;
+      const campus      = document.getElementById('field-campus').value;
+      const zone        = document.getElementById('field-zone').value;
+      const description = document.getElementById('field-description').value.trim();
+      const lat         = parseFloat(document.getElementById('field-lat').value) || 0;
+      const lng         = parseFloat(document.getElementById('field-lng').value) || 0;
+      const reporter    = document.getElementById('field-reporter').value || 'Anonymous';
+ 
+      if (!animal || !campus || !zone || !description) {
+        showError('Please fill in all required fields (Animal, Campus, Zone, Description).');
+        return;
+      }
+ 
+      setLoading(true);
+ 
+      const payload = {
+        Animal:            animal,
+        Campus:            campus,
+        Zone:              zone,
+        Description:       description,
+        LocationLatitude:  lat,
+        LocationLongitude: lng,
+        ReportedBy:        reporter
+      };
+ 
+      try {
+        const response = await fetch(FLOW_URL, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(payload)
+        });
+ 
+        if (response.ok || response.status === 202) {
+          showSuccess();
+          resetFormFields();
+        } else {
+          const text = await response.text().catch(() => '');
+          showError(`Server returned ${response.status}. ${text ? '(' + text.substring(0, 100) + ')' : ''}`);
+        }
+      } catch (err) {
+        try {
+          await fetch(FLOW_URL, {
+            method:  'POST',
+            mode:    'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify(payload)
+          });
+          showSuccess();
+          resetFormFields();
+        } catch (err2) {
+          showError('Network error — make sure you are connected and try again. (' + err.message + ')');
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
 
+    function setLoading(on) {
+      const btn = document.getElementById('btn-submit');
+      btn.disabled = on;
+      btn.classList.toggle('loading', on);
+      document.getElementById('spinner').style.display = on ? 'block' : 'none';
+      document.getElementById('btn-text').textContent = on ? 'Submitting…' : 'Submit Incident Report';
+    }
+ 
+    function hideAlerts() {
+      document.getElementById('alert-success').classList.remove('show');
+      document.getElementById('alert-error').classList.remove('show');
+    }
+ 
+    function showSuccess() {
+      document.getElementById('alert-success').classList.add('show');
+      document.querySelector('.form-area').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+ 
+    function showError(msg) {
+      document.getElementById('error-detail').textContent = msg;
+      document.getElementById('alert-error').classList.add('show');
+      document.querySelector('.form-area').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+ 
+    function resetFormFields() {
+      document.getElementById('field-animal').value = '';
+      document.getElementById('field-campus').value = '';
+      document.getElementById('field-zone').value   = '';
+      document.getElementById('field-description').value = '';
+      document.getElementById('field-lat').value    = '';
+      document.getElementById('field-lng').value    = '';
+      document.querySelectorAll('.animal-chip').forEach(c => c.classList.remove('active'));
+    }
+ 
+    function resetForm() {
+      hideAlerts();
+      resetFormFields();
+      document.getElementById('field-reporter').value = '';
+    }
+ 
+  </script>
+ 
 </body>
-</html>
 </html>
