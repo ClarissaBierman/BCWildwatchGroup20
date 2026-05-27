@@ -567,11 +567,11 @@
           </div>
 
           <div class="alert alert-success" id="alert-success">
-            <strong>✓ Report submitted successfully!</strong><br>
+            <strong>Report submitted successfully!</strong><br>
             Your sighting has been logged. Campus security has been notified. Thank you for keeping BC safe.
           </div>
           <div class="alert alert-error" id="alert-error">
-            <strong>⚠ Submission failed.</strong><br>
+            <strong>Submission failed.</strong><br>
             <span id="error-detail">Please check your connection and try again.</span>
           </div>
  
@@ -670,6 +670,17 @@
                 <div class="spinner" id="spinner"></div>
                 <span class="btn-text" id="btn-text">Submit Incident Report</span>
               </button>
+            <a class="btn-secondary" 
+               href="https://apps.powerapps.com/play/e/93aeb50b-f731-e2b9-bc9b-fcba74297f52/a/72a2b1a8-f9a6-4540-9f7e-14716ca192c3?tenantId=ea1a909b-6600-4a25-82a5-0c6ed7d0513b&hint=bfd67233-8d90-4ee9-bc81-76fb7b4cd82a&sourcetime=1779868266229" 
+               target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+              </svg>
+              Open in Power Apps
+            </a>
             </div>
  
           </div>
@@ -850,7 +861,7 @@
           document.getElementById('field-lat').value = pos.coords.latitude.toFixed(6);
           document.getElementById('field-lng').value = pos.coords.longitude.toFixed(6);
           btn.disabled = false;
-          btn.innerHTML = `✓ Got It`;
+          btn.innerHTML = `Got It`;
           setTimeout(() => {
             btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/></svg> Locate Me`;
           }, 2000);
